@@ -43,7 +43,7 @@ namespace zich{
         Matrix operator*(Matrix const& other);
         Matrix operator*(double const& num);
         void operator*=(double const& num);
-        friend Matrix operator*(double const &num,Matrix other);
+        friend Matrix operator*(double const &num,Matrix const& other);
 
         //boolean
         bool operator<(Matrix const& other);

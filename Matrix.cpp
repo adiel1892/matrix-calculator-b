@@ -122,8 +122,8 @@ bool Matrix::operator>(Matrix const& other){
     if(other.cols != this->cols || other.rows != this->rows){
         __throw_invalid_argument("Different matrix size!");
     }
-    int sum_a = 0;
-    int sum_b = 0;
+    double sum_a = 0;
+    double sum_b = 0;
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
             sum_a += this->mat.at(i).at(j);
@@ -134,17 +134,14 @@ bool Matrix::operator>(Matrix const& other){
             sum_b += other.mat.at(i).at(j);
         }
     }
-    if(sum_a > sum_b){
-        return true;
-    }
-    return false;
+    return sum_a > sum_b;
 }
 bool Matrix::operator>=(Matrix const& other){
     if(other.cols != this->cols || other.rows != this->rows){
         __throw_invalid_argument("Different matrix size!");
     }
-    int sum_a = 0;
-    int sum_b = 0;
+    double sum_a = 0;
+    double sum_b = 0;
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
             sum_a += this->mat.at(i).at(j);
@@ -155,17 +152,14 @@ bool Matrix::operator>=(Matrix const& other){
             sum_b += other.mat.at(i).at(j);
         }
     }
-    if(sum_a >= sum_b){
-        return true;
-    }
-    return false;
+    return sum_a >= sum_b;
 }
 bool Matrix::operator<(Matrix const& other){
     if(other.cols != this->cols || other.rows != this->rows){
         __throw_invalid_argument("Different matrix size!");
     }
-    int sum_a = 0;
-    int sum_b = 0;
+    double sum_a = 0;
+    double sum_b = 0;
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
             sum_a += this->mat.at(i).at(j);
@@ -176,17 +170,14 @@ bool Matrix::operator<(Matrix const& other){
             sum_b += other.mat.at(i).at(j);
         }
     }
-    if(sum_a < sum_b){
-        return true;
-    }
-    return false;
+    return sum_a < sum_b;
 }
 bool Matrix::operator<=(Matrix const& other){
     if(other.cols != this->cols || other.rows != this->rows){
         __throw_invalid_argument("Different matrix size!");
     }
-    int sum_a = 0;
-    int sum_b = 0;
+    double sum_a = 0;
+    double sum_b = 0;
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
             sum_a += this->mat.at(i).at(j);
@@ -197,10 +188,7 @@ bool Matrix::operator<=(Matrix const& other){
             sum_b += other.mat.at(i).at(j);
         }
     }
-    if(sum_a <= sum_b){
-        return true;
-    }
-    return false;
+    return sum_a <= sum_b;
 }
 bool Matrix::operator==(Matrix const& other){
     if(other.cols != this->cols || other.rows != this->rows){
@@ -240,7 +228,7 @@ Matrix& Matrix::operator--(){
 }
 
 
-Matrix zich::operator*(double const &num,Matrix other){
+Matrix zich::operator*(double const &num,Matrix const& other){
     Matrix a({0,0,0},1,3);
     return a;
 }
