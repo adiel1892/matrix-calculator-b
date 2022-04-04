@@ -53,11 +53,11 @@ namespace zich{
         bool operator==(Matrix const& other);
         bool operator!=(Matrix const& other);
 
-
-
-
-        
         friend ostream& operator<<(ostream& out,Matrix const &a);
         // friend istream& operator>>(ostream& in,Matrix const a);
+
+        bool same_size(Matrix const& other)const;
+
+        
     };
 }
