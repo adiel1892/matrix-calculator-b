@@ -8,14 +8,14 @@ Matrix::Matrix( vector<double> nums, int rows , int cols){
     if(nums.size() != (int)(rows * cols)){
         __throw_invalid_argument("invalid matrix");
     }
-    unsigned int u_rows = (unsigned int) rows;
-    unsigned int u_cols = (unsigned int) cols;
-    this->cols = u_cols;
-    this->rows = u_rows;
+    // unsigned int u_rows = (unsigned int) rows;
+    // unsigned int u_cols = (unsigned int) cols;
+    this->cols = cols;
+    this->rows = rows;
     vector<double> currRow;
     unsigned int count = 0;
     size_t i = 0;
-    while(count < (unsigned int)(rows * cols)){
+    while(count < (rows * cols)){
         currRow.push_back(nums.at(i));
         count++;
         i++;
@@ -34,6 +34,7 @@ Matrix::~Matrix(){
 bool Matrix::same_size(Matrix const& other)const{
     return (other.cols == this->cols && this->rows == other.rows);
 }
+
 
 //plus
 Matrix Matrix::operator+(Matrix const& other){
@@ -66,7 +67,7 @@ Matrix Matrix::operator+(){
             vec.push_back(this->mat.at(i).at(j));
         }
     }
-    Matrix res(vec, (int)this->rows , (int)this->cols);
+    Matrix res(vec,this->rows ,this->cols);
     return res;
 }
 
@@ -90,7 +91,7 @@ Matrix Matrix::operator-(Matrix const& other){
             vec.push_back((this->mat.at(i).at(j) - other.mat.at(i).at(j)));
         }
     }
-    Matrix res(vec , (int)this->rows , (int)this->cols);
+    Matrix res(vec ,this->rows ,this->cols);
     return res;
 }
 void Matrix::operator-=(Matrix const& other){
@@ -111,7 +112,7 @@ Matrix Matrix::operator-(){
             vec.push_back(this->mat.at(i).at(j) * -1);
         }
     }
-    Matrix res(vec, (int)this->rows , (int)this->cols);
+    Matrix res(vec,this->rows ,this->cols);
     return res;
 }
 
@@ -142,7 +143,7 @@ Matrix Matrix::operator*(Matrix const& other){
             }
         }
     }
-    Matrix res(vec , (int)this->rows ,(int)other.cols);
+    Matrix res(vec ,this->rows ,other.cols);
     return res;
 }
 
@@ -161,7 +162,7 @@ Matrix zich::operator*(double const &num,Matrix const& other){
             vec.push_back(other.getMatrix().at(i).at(j) * num);
         }
     }
-    Matrix res(vec,(int)other.rows , (int)other.cols);
+    Matrix res(vec,other.rows ,other.cols);
     return res;
 }
 

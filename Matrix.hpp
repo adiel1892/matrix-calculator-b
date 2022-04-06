@@ -10,8 +10,8 @@ namespace zich{
     class Matrix{
         private:
             vector<vector<double>> mat;
-            unsigned int rows;
-            unsigned int cols;
+            int rows;
+            int cols;
 
         public:
         //constructor
@@ -22,8 +22,8 @@ namespace zich{
 
         //getters
         vector<vector<double>> getMatrix() const{return this->mat;}
-        unsigned int getRows() const{return this->rows;}
-        unsigned int getCols() const{return this->cols;}
+        int getRows() const{return this->rows;}
+        int getCols() const{return this->cols;}
 
         //plus
         Matrix operator+(Matrix const& other);
@@ -57,7 +57,5 @@ namespace zich{
         // friend istream& operator>>(ostream& in,Matrix const a);
 
         bool same_size(Matrix const& other)const;
-
-        
     };
 }
