@@ -308,6 +308,7 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     }
     return out;
 }
+
 // istream& zich::operator<<(istream& in, Matrix const& a){
 //     return in;   
 // }
