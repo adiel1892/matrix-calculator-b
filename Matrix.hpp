@@ -29,7 +29,8 @@ namespace zich{
         Matrix operator+(Matrix const& other);
         Matrix& operator+=(Matrix const& other);
         Matrix operator+();
-        Matrix& operator++();
+        Matrix& operator++(); //++Matrix
+        Matrix operator++(int); //Matrix++
 
 
 
@@ -38,6 +39,7 @@ namespace zich{
         Matrix& operator-=(Matrix const& other);
         Matrix operator-();
         Matrix& operator--();
+        Matrix operator--(int);
 
         //multiplication
         Matrix operator*(Matrix const& other);

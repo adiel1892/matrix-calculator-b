@@ -8,8 +8,6 @@ Matrix::Matrix( vector<double> nums, int rows , int cols){
     if(nums.size() != (int)(rows * cols)){
         __throw_invalid_argument("invalid matrix");
     }
-    // unsigned int u_rows = (unsigned int) rows;
-    // unsigned int u_cols = (unsigned int) cols;
     this->cols = cols;
     this->rows = rows;
     vector<double> currRow;
@@ -47,7 +45,7 @@ Matrix Matrix::operator+(Matrix const& other){
             vec.push_back((this->mat.at(i).at(j) + other.mat.at(i).at(j)));
         }
     }
-    Matrix res(vec , (int)this->rows , (int)this->cols);
+    Matrix res(vec ,this->rows ,this->cols);
     return res;
 }
 Matrix& Matrix::operator+=(Matrix const& other){
@@ -79,6 +77,17 @@ Matrix& Matrix::operator++(){
         }
     }
     return *this;
+}
+Matrix Matrix::operator++(int){
+    vector<double>vec;
+    for(size_t i = 0; i < this->rows; i++){
+        for(size_t j = 0; j < this->cols; j++){
+            vec.push_back(this->mat.at(i).at(j));
+            this->mat.at(i).at(j)++;
+        }
+    }
+    Matrix res(vec,this->rows ,this->cols);
+    return res;
 }
 
 //subtract
@@ -132,6 +141,17 @@ Matrix& Matrix::operator--(){
     return *this;
 }
 
+Matrix Matrix::operator--(int){
+    vector<double>vec;
+    for(size_t i = 0; i < this->rows; i++){
+        for(size_t j = 0; j < this->cols; j++){
+            vec.push_back(this->mat.at(i).at(j));
+            this->mat.at(i).at(j)--;
+        }
+    }
+    Matrix res(vec,this->rows ,this->cols);
+    return res;
+}
 //multiplication
 Matrix Matrix::operator*(Matrix const& other){
     if(this->cols != other.rows){
