@@ -125,7 +125,6 @@ Matrix Matrix::operator-(){
             }else{
                 vec.push_back(this->mat.at(i).at(j));
             }
-            
         }
     }
     Matrix res(vec,this->rows ,this->cols);
@@ -308,7 +307,6 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
         out << "\n";
     }
     return out;
-
 }
 // istream& zich::operator<<(istream& in, Matrix const& a){
 //     return in;   
