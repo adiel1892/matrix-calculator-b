@@ -27,7 +27,7 @@ namespace zich{
 
         //plus
         Matrix operator+(Matrix const& other);
-        void operator+=(Matrix const& other);
+        Matrix& operator+=(Matrix const& other);
         Matrix operator+();
         Matrix& operator++();
 
@@ -35,14 +35,14 @@ namespace zich{
 
         //subtract
         Matrix operator-(Matrix const& other);
-        void operator-=(Matrix const& other);
+        Matrix& operator-=(Matrix const& other);
         Matrix operator-();
         Matrix& operator--();
 
         //multiplication
         Matrix operator*(Matrix const& other);
         Matrix operator*(double const& num);
-        void operator*=(double const& num);
+        Matrix& operator*=(double const& num);
         friend Matrix operator*(double const &num,Matrix const& other);
 
         //boolean

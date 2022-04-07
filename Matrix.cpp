@@ -50,7 +50,7 @@ Matrix Matrix::operator+(Matrix const& other){
     Matrix res(vec , (int)this->rows , (int)this->cols);
     return res;
 }
-void Matrix::operator+=(Matrix const& other){
+Matrix& Matrix::operator+=(Matrix const& other){
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -59,6 +59,7 @@ void Matrix::operator+=(Matrix const& other){
             this->mat.at(i).at(j) = (this->mat.at(i).at(j) + other.mat.at(i).at(j));
         }
     }
+    return *this;
 }
 Matrix Matrix::operator+(){
     vector<double>vec;
@@ -94,7 +95,7 @@ Matrix Matrix::operator-(Matrix const& other){
     Matrix res(vec ,this->rows ,this->cols);
     return res;
 }
-void Matrix::operator-=(Matrix const& other){
+Matrix& Matrix::operator-=(Matrix const& other){
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -103,13 +104,19 @@ void Matrix::operator-=(Matrix const& other){
             this->mat.at(i).at(j) = (this->mat.at(i).at(j) - other.mat.at(i).at(j));
         }
     }
+    return *this;
 
 }
 Matrix Matrix::operator-(){
     vector<double>vec;
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
-            vec.push_back(this->mat.at(i).at(j) * -1);
+            if(this->mat.at(i).at(j) != 0){
+                vec.push_back(this->mat.at(i).at(j) * -1);
+            }else{
+                vec.push_back(this->mat.at(i).at(j));
+            }
+            
         }
     }
     Matrix res(vec,this->rows ,this->cols);
@@ -147,12 +154,13 @@ Matrix Matrix::operator*(Matrix const& other){
     return res;
 }
 
-void Matrix::operator*=(const double &num){
+Matrix& Matrix::operator*=(const double &num){
     for(size_t i = 0; i < this->rows; i++){
         for(size_t j = 0; j < this->cols; j++){
             this->mat.at(i).at(j) = (this->mat.at(i).at(j) * num);
         }       
     }
+    return *this;
 }
 
 Matrix zich::operator*(double const &num,Matrix const& other){
