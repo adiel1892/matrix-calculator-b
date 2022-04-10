@@ -59,5 +59,7 @@ namespace zich{
         // friend istream& operator>>(ostream& in,Matrix const &a);
 
         bool same_size(Matrix const& other)const;
+        bool getNum(const string& str,int *stringToInt);
+        Matrix randomMatrix(int rows, int cols);
     };
 }
