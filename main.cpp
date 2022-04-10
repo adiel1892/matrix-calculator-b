@@ -28,7 +28,7 @@ bool getNum(const string& str,int *stringToInt)
     return true;
 }
 
-./main{
+Matrix randomMatrix(int rows, int cols){
     int count = 0;
     vector<double> vec;
     while(count < (rows * cols)){
@@ -41,6 +41,10 @@ bool getNum(const string& str,int *stringToInt)
 }
 
 int main(){
+    // Matrix trying33;
+    // cin >> trying33;
+    // cout << trying33;
+
     cout << "Welcome to our Matrix world!\n";
     cout << "Enter rows and columns to see what is it a matrix.\n";
     int rows , cols;

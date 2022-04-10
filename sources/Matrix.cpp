@@ -172,6 +172,16 @@ Matrix Matrix::operator*(Matrix const& other){
     Matrix res(vec ,this->rows ,other.cols);
     return res;
 }
+Matrix  Matrix::operator*(double const& num){
+    vector<double> vec;
+    for(size_t i = 0; i < this->rows; i++){
+        for(size_t j = 0; j < this->cols; j++){
+            vec.push_back(this->mat.at(i).at(j) * num);
+        }
+    }
+    Matrix res(vec,this->rows ,this->cols);
+    return res;
+}
 
 Matrix& Matrix::operator*=(const double &num){
     for(size_t i = 0; i < this->rows; i++){
@@ -180,6 +190,28 @@ Matrix& Matrix::operator*=(const double &num){
         }       
     }
     return *this;
+}
+Matrix& Matrix::operator*=(Matrix const& other){
+    if(this->cols != other.rows){
+        __throw_invalid_argument("can't mult!");
+    }
+    vector<double> vec;
+    double sum = 0;
+    for(size_t i = 0; i < this->rows; i++){
+        for(size_t j = 0; j < other.cols; j++){
+            for(size_t k = 0; k < this->cols; k++){
+                sum += this->mat.at(i).at(k) * other.mat.at(k).at(j);
+                if(k == this->cols - 1){
+                    vec.push_back(sum);
+                    sum = 0;
+                }
+            }
+        }
+    }
+    Matrix res(vec ,this->rows ,other.cols);
+    *this = res;
+    return *this;
+
 }
 
 Matrix zich::operator*(double const &num,Matrix const& other){
@@ -194,7 +226,7 @@ Matrix zich::operator*(double const &num,Matrix const& other){
 }
 
 //boolean
-bool Matrix::operator>(Matrix const& other){
+bool Matrix::operator>(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -212,7 +244,7 @@ bool Matrix::operator>(Matrix const& other){
     }
     return sum_a > sum_b;
 }
-bool Matrix::operator>=(Matrix const& other){
+bool Matrix::operator>=(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -230,7 +262,7 @@ bool Matrix::operator>=(Matrix const& other){
     }
     return sum_a >= sum_b;
 }
-bool Matrix::operator<(Matrix const& other){
+bool Matrix::operator<(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -248,7 +280,7 @@ bool Matrix::operator<(Matrix const& other){
     }
     return sum_a < sum_b;
 }
-bool Matrix::operator<=(Matrix const& other){
+bool Matrix::operator<=(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -266,7 +298,7 @@ bool Matrix::operator<=(Matrix const& other){
     }
     return sum_a <= sum_b;
 }
-bool Matrix::operator==(Matrix const& other){
+bool Matrix::operator==(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -279,7 +311,7 @@ bool Matrix::operator==(Matrix const& other){
     }
     return true;
 }
-bool Matrix::operator!=(Matrix const& other){
+bool Matrix::operator!=(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
@@ -309,7 +341,35 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     return out;
 }
 
-// istream& zich::operator<<(istream& in, Matrix const& a){
+// istream& zich::operator>>(istream& in, Matrix & a){
+//     // int total = a.rows * a.cols;
+//     // cout << "Please enter " << total << " elements for the matrix";
+//     // int count = 0;
+//     // for(size_t i = 0; i < a.rows; i++){
+//     //     for(size_t j = 0; j < a.cols; j++){
+//     //         in >> a.mat.at(i).at(j);
+//     //     }
+//     // }
+//     cout << "Please enter a matrix.\n";
+//     cout << " Example like this -> 1 0 0 , 0 1 0 , 0 0 1 \n";
+//     int i = 0;
+//     int j = 0;
+//     int cols = 0;
+//     int total = 0;
+//     string curr_in;
+//     in >> curr_in;
+//     while(curr_in != "\n"){
+//         if(curr_in != ","){
+//             in >> a.mat.at(i).at(j);
+//             j++;
+//         }else{
+//             cols = j;
+//             i++;
+//             j = 0;
+//         }
+//         in >> curr_in;
+//     }
+        
 //     return in;   
 // }
 

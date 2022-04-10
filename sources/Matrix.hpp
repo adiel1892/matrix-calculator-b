@@ -16,6 +16,24 @@ namespace zich{
         public:
         //constructor
         Matrix(vector<double>, const int,const int);
+        //default constructor
+        // Matrix(){
+        //     vector<double> nums = {1,0,0,0,1,0,0,0,1};
+        //     this->cols = 3;
+        //     this->rows = 3;
+        //     vector<double> currRow;
+        //     unsigned int count = 0;
+        //     size_t i = 0;
+        //     while(count < (9)){
+        //         currRow.push_back(nums.at(i));
+        //         count++;
+        //         i++;
+        //         if(currRow.size() == 3){
+        //             this->mat.push_back(currRow);
+        //             currRow.resize(0);
+        //         }
+        //     }
+        // }
 
         //destructor
         ~Matrix();
@@ -45,21 +63,22 @@ namespace zich{
         Matrix operator*(Matrix const& other);
         Matrix operator*(double const& num);
         Matrix& operator*=(double const& num);
+        Matrix& operator*=(Matrix const& other);
         friend Matrix operator*(double const &num,Matrix const& other);
 
         //boolean
-        bool operator<(Matrix const& other);
-        bool operator<=(Matrix const& other);
-        bool operator>(Matrix const& other);
-        bool operator>=(Matrix const& other);
-        bool operator==(Matrix const& other);
-        bool operator!=(Matrix const& other);
+        bool operator<(Matrix const& other)const;
+        bool operator<=(Matrix const& other)const;
+        bool operator>(Matrix const& other)const;
+        bool operator>=(Matrix const& other)const;
+        bool operator==(Matrix const& other)const;
+        bool operator!=(Matrix const& other)const;
 
         friend ostream& operator<<(ostream& out,Matrix const &a);
-        // friend istream& operator>>(ostream& in,Matrix const &a);
+        friend istream& operator>>(istream& in,Matrix &a);
 
         bool same_size(Matrix const& other)const;
         bool getNum(const string& str,int *stringToInt);
         Matrix randomMatrix(int rows, int cols);
     };
-}
+};
