@@ -15,25 +15,9 @@ namespace zich{
 
         public:
         //constructor
-        Matrix(vector<double>, const int,const int);
+        Matrix(const vector<double>, const int,const int);
         //default constructor
-        // Matrix(){
-        //     vector<double> nums = {1,0,0,0,1,0,0,0,1};
-        //     this->cols = 3;
-        //     this->rows = 3;
-        //     vector<double> currRow;
-        //     unsigned int count = 0;
-        //     size_t i = 0;
-        //     while(count < (9)){
-        //         currRow.push_back(nums.at(i));
-        //         count++;
-        //         i++;
-        //         if(currRow.size() == 3){
-        //             this->mat.push_back(currRow);
-        //             currRow.resize(0);
-        //         }
-        //     }
-        // }
+        Matrix();
 
         //destructor
         ~Matrix();

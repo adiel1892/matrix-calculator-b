@@ -1,7 +1,7 @@
 #include "Matrix.hpp"
 using namespace zich;
 //constructor
-Matrix::Matrix( vector<double> nums, int rows , int cols){
+Matrix::Matrix( const vector<double> nums, int rows , int cols){
     if(rows < 1 || cols < 1){
         __throw_invalid_argument("rows and cols must be positive");
     }
@@ -22,6 +22,10 @@ Matrix::Matrix( vector<double> nums, int rows , int cols){
             currRow.resize(0);
         }
     }
+}
+Matrix::Matrix(){
+    this->rows = 0;
+    this->cols = 0;
 }
 
 //destructor
@@ -341,35 +345,10 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     return out;
 }
 
-// istream& zich::operator>>(istream& in, Matrix & a){
-//     // int total = a.rows * a.cols;
-//     // cout << "Please enter " << total << " elements for the matrix";
-//     // int count = 0;
-//     // for(size_t i = 0; i < a.rows; i++){
-//     //     for(size_t j = 0; j < a.cols; j++){
-//     //         in >> a.mat.at(i).at(j);
-//     //     }
-//     // }
-//     cout << "Please enter a matrix.\n";
-//     cout << " Example like this -> 1 0 0 , 0 1 0 , 0 0 1 \n";
-//     int i = 0;
-//     int j = 0;
-//     int cols = 0;
-//     int total = 0;
-//     string curr_in;
-//     in >> curr_in;
-//     while(curr_in != "\n"){
-//         if(curr_in != ","){
-//             in >> a.mat.at(i).at(j);
-//             j++;
-//         }else{
-//             cols = j;
-//             i++;
-//             j = 0;
-//         }
-//         in >> curr_in;
-//     }
-        
-//     return in;   
-// }
+istream& zich::operator>>(istream& in, Matrix & a){
+    cout << "Please enter a matrix.\n";
+    cout << " Example like this -> 1 0 0 , 0 1 0 , 0 0 1 \n";
+    vector<double> vec;
+    return in;
+}
 

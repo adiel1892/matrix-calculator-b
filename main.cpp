@@ -1,4 +1,4 @@
-#include "Matrix.cpp"
+#include "sources/Matrix.cpp"
 #include  <cmath>
 using namespace zich;
 
@@ -22,7 +22,6 @@ bool getNum(const string& str,int *stringToInt)
         else{
             *stringToInt += val * pow(10, len - 1);
             len--;
-
         }
     }
     return true;
@@ -41,9 +40,9 @@ Matrix randomMatrix(int rows, int cols){
 }
 
 int main(){
-    // Matrix trying33;
-    // cin >> trying33;
-    // cout << trying33;
+    Matrix trying33;
+    cin >> trying33;
+    cout << trying33;
 
     cout << "Welcome to our Matrix world!\n";
     cout << "Enter rows and columns to see what is it a matrix.\n";
@@ -132,40 +131,40 @@ int main(){
             case 6:
                 cout << "You chose to check if one > two!\n";
                 cout << "One is > two if the sum of the all matrix elements is bigger than the sum of two.\n";
-                cout << endl << one << endl <<"<" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<"<" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 7:
                 cout << "You chose to check if one >= two!\n";
                 cout << "One is >= two if the sum of the all matrix elements is equal bigger than the sum of two.\n";
                 bools = one >= two;
-                cout << endl << one << endl <<">=" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<">=" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 8:
                 cout << "You chose to check if one < two!\n";
                 cout << "One is < two if the sum of the all matrix elements is less than the sum of two.\n";
                 bools = one < two;
-                cout << endl << one << endl <<"<" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<"<" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 9:
                 cout << "You chose to check if one <= two!\n";
                 cout << "One is <= two if the sum of the all matrix elements is equal less than the sum of two.\n";
                 bools = one <= two;
-                cout << endl << one << endl <<"<=" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<"<=" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 10:
                 cout << "You chose to check if one == two!\n";
                 cout << "One is == two if all the elements are equal and in the same place.\n";
                 bools = one == two;
-                cout << endl << one << endl <<"==" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<"==" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 11:
                 cout << "You chose to check if one != two!\n";
                 cout << "One is != two if there is at least one element that is not the same.\n";
                 bools = one != two;
-                cout << endl << one << endl <<"!=" << "\n\n" << two << endl <<"=" << "\n\n" << bools << endl;
+                cout << endl << one << endl <<"!=" << "\n\n" << two << endl << "= " << bools << endl;
                 break; 
             default:
-                cout << "Please insert invalid case.";
+                cout << "Please insert a valid case.";
                 break;
         }
     }
