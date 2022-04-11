@@ -356,11 +356,11 @@ istream& zich::operator>>(istream& in, Matrix & a){
     int countCols = 0;
     string tmpNumString;
     double num = 0;
-    char tmp = in.get();
+    unsigned char tmp = (unsigned char) in.get();
     while(tmp != '\n'){
         if(tmp >= '0' && tmp <= '9'){
             // tmp != '[' && tmp != ']' && tmp != ' ' && tmp != ',' 
-            tmpNumString += tmp;
+            tmpNumString += (char) tmp;
         }
         if(tmp == ' ' || tmp == ']'){
             if(!tmpNumString.empty()){
@@ -379,7 +379,7 @@ istream& zich::operator>>(istream& in, Matrix & a){
             countCols = 0;
             currRow.resize(0);
         }
-        tmp = in.get();
+        tmp = (unsigned char) in.get();
     }
     unsigned int rows = a.mat.size();
     unsigned int cols = a.mat[0].size();
