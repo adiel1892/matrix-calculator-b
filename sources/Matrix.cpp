@@ -340,15 +340,18 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
                 out << a.getMatrix().at(i).at(j) << "]";
             }
         }
-        out << "\n";
+        if(i != a.rows - 1){
+            out << "\n";
+        }
+        
     }
     return out;
 }
 
 
 istream& zich::operator>>(istream& in, Matrix & a){
-    cout << "Please enter a matrix.\n";
-    cout << " Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
+    // cout << "Please enter a matrix.\n";
+    // cout << " Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
     vector<double> currRow;
     int countCols = 0;
     string tmpNumString;
@@ -373,7 +376,7 @@ istream& zich::operator>>(istream& in, Matrix & a){
             a.mat.push_back(currRow);
             if(a.mat[0].size() != countCols){
                 cout << a.mat[0].size() << " - " << countCols << "\n";
-                __throw_invalid_argument("invalid matrix");
+                __throw_invalid_argument("invalid matrix222");
             }
             countCols = 0;
             currRow.resize(0);
