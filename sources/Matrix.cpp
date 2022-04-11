@@ -345,10 +345,44 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     return out;
 }
 
+
 istream& zich::operator>>(istream& in, Matrix & a){
     cout << "Please enter a matrix.\n";
-    cout << " Example like this -> 1 0 0 , 0 1 0 , 0 0 1 \n";
-    vector<double> vec;
+    cout << " Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
+    vector<double> currRow;
+    int countCols = 0;
+    string tmpNumString;
+    double num = 0;
+    char tmp = in.get();
+    while(tmp != '\n'){
+        if(tmp >= '0' && tmp <= '9'){
+            // tmp != '[' && tmp != ']' && tmp != ' ' && tmp != ',' 
+            tmpNumString += tmp;
+        }
+        if(tmp == ' ' || tmp == ']'){
+            if(tmpNumString.find(' ') && tmpNumString.find(']') && tmpNumString.find(',')){
+                if(tmpNumString != ""){
+                    num = std::stod(tmpNumString);
+                    currRow.push_back(num);
+                    countCols++;
+                }
+                tmpNumString = "";
+            }
+        }
+        if(tmp == ']'){
+            a.mat.push_back(currRow);
+            if(a.mat[0].size() != countCols){
+                cout << a.mat[0].size() << " - " << countCols << "\n";
+                __throw_invalid_argument("invalid matrix");
+            }
+            countCols = 0;
+            currRow.resize(0);
+        }
+        tmp = in.get();
+    }
+    int rows = a.mat.size();
+    int cols = a.mat[0].size();
+    a.rows = rows;
+    a.cols = cols;
     return in;
 }
-
