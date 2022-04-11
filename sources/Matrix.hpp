@@ -15,7 +15,7 @@ namespace zich{
 
         public:
         //constructor
-        Matrix(const vector<double>, const int,const int);
+        Matrix(const vector<double> &nums, const int rows ,const int cols);
         //default constructor
         Matrix();
 

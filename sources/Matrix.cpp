@@ -1,7 +1,7 @@
 #include "Matrix.hpp"
 using namespace zich;
 //constructor
-Matrix::Matrix( const vector<double> nums, int rows , int cols){
+Matrix::Matrix( const vector<double> &nums, int rows , int cols){
     if(rows < 1 || cols < 1){
         __throw_invalid_argument("rows and cols must be positive");
     }
@@ -363,14 +363,12 @@ istream& zich::operator>>(istream& in, Matrix & a){
             tmpNumString += tmp;
         }
         if(tmp == ' ' || tmp == ']'){
-            if(tmpNumString.find(' ') && tmpNumString.find(']') && tmpNumString.find(',')){
-                if(tmpNumString != ""){
-                    num = std::stod(tmpNumString);
-                    currRow.push_back(num);
-                    countCols++;
-                }
-                tmpNumString = "";
+            if(!tmpNumString.empty()){
+                num = std::stod(tmpNumString);
+                currRow.push_back(num);
+                countCols++;
             }
+            tmpNumString = "";
         }
         if(tmp == ']'){
             a.mat.push_back(currRow);
@@ -383,9 +381,9 @@ istream& zich::operator>>(istream& in, Matrix & a){
         }
         tmp = in.get();
     }
-    int rows = a.mat.size();
-    int cols = a.mat[0].size();
-    a.rows = rows;
-    a.cols = cols;
+    unsigned int rows = a.mat.size();
+    unsigned int cols = a.mat[0].size();
+    a.rows = (int) rows;
+    a.cols = (int) cols;
     return in;
 }
