@@ -40,42 +40,30 @@ Matrix randomMatrix(int rows, int cols){
 }
 
 int main(){
-    Matrix trying33;
-    cin >> trying33;
-    cout << trying33;
-
     cout << "Welcome to our Matrix world!\n";
-    cout << "Enter rows and columns to see what is it a matrix.\n";
-    int rows , cols;
-    string check_rows , check_cols;
-    cout << "Lets start with the rows..\n";
-    cin >> check_rows;
-    while(!getNum(check_rows , &rows)){
-        cout << "Invalid rows :( Please make sure you insert a valid number\n";
-        cin >> check_rows;
+    Matrix on1;
+    cout << "Please enter a matrix.\n";
+    cout << "Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
+    Matrix one;
+    try{
+        cin >> one;
+    }catch(exception e){
+        cout << "Please insert a valid matrix\n";
+        __throw_invalid_argument("invalid matrix - main");
     }
-    cout << "Continue with the cols..\n";
-    cin >> check_cols;
-    while(!getNum(check_cols , &cols)){
-        cout << "Invalid cols :( Please make sure you insert a valid number\n";
-        cin >> check_cols;
-    }
+    
 
-    Matrix one = randomMatrix(rows, cols);
-    Matrix two = randomMatrix(rows, cols);
+    // Matrix one = randomMatrix(rows, cols);
+    Matrix two = randomMatrix(one.getRows(), one.getCols());
     cout << "congratulations!! You made your first matrix!\n";
     cout << one;
-    cout <<".\n.\n.\n.\n";
+    
 
-    cout << "Let's do cool stuff\n";
+    cout << "\nLet's do cool stuff\n";
     // cout << "We have our first matrix, let's create another one with the same size.\n";
     string i_want = "y";
-
-
-
     bool bools = one > two;
     while(i_want != "n"){
-
         cout << "Do you want to continue?? yes - any key , no - n\n";
         cin >> i_want;
         if(i_want == "n"){
