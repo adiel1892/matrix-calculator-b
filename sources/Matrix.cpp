@@ -1,7 +1,8 @@
 #include "Matrix.hpp"
 using namespace zich;
+
 //constructor
-Matrix::Matrix( const vector<double> &nums, int rows , int cols){
+Matrix::Matrix( const vector<double> &nums,int rows ,int cols){
     if(rows < 1 || cols < 1){
         __throw_invalid_argument("rows and cols must be positive");
     }
@@ -22,10 +23,6 @@ Matrix::Matrix( const vector<double> &nums, int rows , int cols){
             currRow.resize(0);
         }
     }
-}
-Matrix::Matrix(){
-    this->rows = 0;
-    this->cols = 0;
 }
 
 //destructor
@@ -230,76 +227,46 @@ Matrix zich::operator*(double const &num,Matrix const& other){
 }
 
 //boolean
+
+double Matrix::sumMatrix(Matrix const& other){
+    double sum = 0;
+    for(size_t i = 0; i < other.rows; i++){
+        for(size_t j = 0; j < other.cols; j++){
+            sum += other.mat.at(i).at(j);
+        }
+    }
+    return sum;
+}
 bool Matrix::operator>(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
-    double sum_a = 0;
-    double sum_b = 0;
-    for(size_t i = 0; i < this->rows; i++){
-        for(size_t j = 0; j < this->cols; j++){
-            sum_a += this->mat.at(i).at(j);
-        }
-    }
-    for(size_t i = 0; i < other.rows; i++){
-        for(size_t j = 0; j < other.cols; j++){
-            sum_b += other.mat.at(i).at(j);
-        }
-    }
+    double sum_a = sumMatrix(*this);
+    double sum_b = sumMatrix(other);
     return sum_a > sum_b;
 }
 bool Matrix::operator>=(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
-    double sum_a = 0;
-    double sum_b = 0;
-    for(size_t i = 0; i < this->rows; i++){
-        for(size_t j = 0; j < this->cols; j++){
-            sum_a += this->mat.at(i).at(j);
-        }
-    }
-    for(size_t i = 0; i < other.rows; i++){
-        for(size_t j = 0; j < other.cols; j++){
-            sum_b += other.mat.at(i).at(j);
-        }
-    }
+    double sum_a = sumMatrix(*this);
+    double sum_b = sumMatrix(other);
     return sum_a >= sum_b;
 }
 bool Matrix::operator<(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
-    double sum_a = 0;
-    double sum_b = 0;
-    for(size_t i = 0; i < this->rows; i++){
-        for(size_t j = 0; j < this->cols; j++){
-            sum_a += this->mat.at(i).at(j);
-        }
-    }
-    for(size_t i = 0; i < other.rows; i++){
-        for(size_t j = 0; j < other.cols; j++){
-            sum_b += other.mat.at(i).at(j);
-        }
-    }
+    double sum_a = sumMatrix(*this);
+    double sum_b = sumMatrix(other);
     return sum_a < sum_b;
 }
 bool Matrix::operator<=(Matrix const& other)const{
     if(!same_size(other)){
         __throw_invalid_argument("Different matrix size!");
     }
-    double sum_a = 0;
-    double sum_b = 0;
-    for(size_t i = 0; i < this->rows; i++){
-        for(size_t j = 0; j < this->cols; j++){
-            sum_a += this->mat.at(i).at(j);
-        }
-    }
-    for(size_t i = 0; i < other.rows; i++){
-        for(size_t j = 0; j < other.cols; j++){
-            sum_b += other.mat.at(i).at(j);
-        }
-    }
+    double sum_a = sumMatrix(*this);
+    double sum_b = sumMatrix(other);
     return sum_a <= sum_b;
 }
 bool Matrix::operator==(Matrix const& other)const{
@@ -347,8 +314,6 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     }
     return out;
 }
-
-
 istream& zich::operator>>(istream& in, Matrix & a){
     // cout << "Please enter a matrix.\n";
     // cout << " Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
@@ -359,7 +324,6 @@ istream& zich::operator>>(istream& in, Matrix & a){
     unsigned char tmp = (unsigned char) in.get();
     while(tmp != '\n'){
         if(tmp >= '0' && tmp <= '9'){
-            // tmp != '[' && tmp != ']' && tmp != ' ' && tmp != ',' 
             tmpNumString += (char) tmp;
         }
         if(tmp == ' ' || tmp == ']'){
@@ -387,3 +351,4 @@ istream& zich::operator>>(istream& in, Matrix & a){
     a.cols = (int) cols;
     return in;
 }
+

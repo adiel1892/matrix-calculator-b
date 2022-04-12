@@ -41,9 +41,8 @@ Matrix randomMatrix(int rows, int cols){
 
 int main(){
     cout << "Welcome to our Matrix world!\n";
-    Matrix on1;
     cout << "Please enter a matrix.\n";
-    cout << "Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
+    cout << "Example like this ->[1 0 0], [0 1 0], [0 0 1] \n";
     Matrix one;
     try{
         cin >> one;
@@ -119,7 +118,7 @@ int main(){
             case 6:
                 cout << "You chose to check if one > two!\n";
                 cout << "One is > two if the sum of the all matrix elements is bigger than the sum of two.\n";
-                cout << endl << one << endl <<"<" << "\n\n" << two << endl << "= " << bools << endl;
+                cout << endl << one << endl <<">" << "\n\n" << two << endl << "= " << bools << endl;
                 break;
             case 7:
                 cout << "You chose to check if one >= two!\n";

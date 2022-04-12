@@ -15,10 +15,12 @@ namespace zich{
 
         public:
         //constructor
-        Matrix(const vector<double> &nums, const int rows ,const int cols);
+        Matrix(const vector<double> &nums, int rows , int cols);
         //default constructor
-        Matrix();
-
+        Matrix(){
+            this->rows = 0;
+            this->cols = 0;
+        }
         //destructor
         ~Matrix();
 
@@ -26,6 +28,7 @@ namespace zich{
         vector<vector<double>> getMatrix() const{return this->mat;}
         int getRows() const{return this->rows;}
         int getCols() const{return this->cols;}
+        
 
         //plus
         Matrix operator+(Matrix const& other);
@@ -64,5 +67,6 @@ namespace zich{
         bool same_size(Matrix const& other)const;
         bool getNum(const string& str,int *stringToInt);
         Matrix randomMatrix(int rows, int cols);
+        static double sumMatrix(Matrix const& other);
     };
 };
