@@ -314,41 +314,60 @@ ostream& zich::operator<<(ostream& out, Matrix const& a){
     }
     return out;
 }
-istream& zich::operator>>(istream& in, Matrix & a){
-    // cout << "Please enter a matrix.\n";
-    // cout << " Example like this ->[1 0 0] ,[0 1 0], [0 0 1] \n";
-    vector<double> currRow;
-    int countCols = 0;
-    string tmpNumString;
-    double num = 0;
-    unsigned char tmp = (unsigned char) in.get();
-    while(tmp != '\n'){
-        if(tmp >= '0' && tmp <= '9'){
-            tmpNumString += (char) tmp;
+
+// got help from a friend
+istream& zich::operator>>(istream& in , Matrix & a){
+    vector<double> vec;
+    int row = 0;
+    int rowLength = 0;
+    int counter = 0;
+    double number = 0;
+    bool b = false;
+    bool first = false;
+    string tempNum;
+    unsigned char temp = (unsigned char) in.get();
+    while (temp != '\n') {
+        if(!b && temp != '['){
+            throw invalid_argument("wrong input for matrix");
         }
-        if(tmp == ' ' || tmp == ']'){
-            if(!tmpNumString.empty()){
-                num = std::stod(tmpNumString);
-                currRow.push_back(num);
-                countCols++;
+        if(temp == '['){
+            temp = (unsigned char) in.get();
+            if(temp < '0' || temp > '9'){
+                throw invalid_argument("wrong input for matrix");
             }
-            tmpNumString = "";
         }
-        if(tmp == ']'){
-            a.mat.push_back(currRow);
-            if(a.mat[0].size() != countCols){
-                cout << a.mat[0].size() << " - " << countCols << "\n";
-                __throw_invalid_argument("invalid matrix222");
+        if(temp == ' '){
+            number = stod(tempNum);
+            vec.push_back(number);
+            tempNum = "";
+            counter++;
+        }
+        if(temp == ']') {
+            number = stod(tempNum);
+            vec.push_back(number);
+            tempNum = "";
+            row++;
+            counter++;
+            if (first && rowLength != counter) {
+                throw invalid_argument("wrong input for matrix");
             }
-            countCols = 0;
-            currRow.resize(0);
+            if (!first) {
+                rowLength = counter;
+                first = true;
+            }
+            counter = 0;
+            temp = (unsigned char) in.get();
+            if (temp == '\n') {
+                break;
+            }
+            temp = (unsigned char) in.get();
         }
-        tmp = (unsigned char) in.get();
+        b = true;
+        tempNum += (char) temp;
+        temp = (unsigned char) in.get();
     }
-    unsigned int rows = a.mat.size();
-    unsigned int cols = a.mat[0].size();
-    a.rows = (int) rows;
-    a.cols = (int) cols;
+    Matrix res(vec , row , rowLength);
+    a = res;
     return in;
 }
 
